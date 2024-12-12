@@ -79,7 +79,7 @@ if (isset($_POST['simpan'])) {
                             <td><?= $tamu['bertemu']?></td>
                             <td><?= $tamu['kepentingan']?></td>
                             <td><a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu']?>">Ubah</a>
-                                <button class="btn btn-danger" type="button">Hapus</button></td>
+                                <a onclick="confirm('Apakah anda yakin ingin menghapus data tamu?')" class="btn btn-danger"  href="hapus-tamu.php?id=<?= $tamu['id_tamu']?>">Hapus</a>
                         </tr>
                         <?php endforeach;?>
                 </tbody>
