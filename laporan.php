@@ -2,7 +2,23 @@
 include_once('templates/header.php');
 require_once('function.php');
 ?>
+<?php
+if (isset($_SESSION['role']) && $_SESSION['role'] != 'operator') {
+  echo "<script>alert('Anda tidak memiliki akses!')</script>";
+  echo "<script>window.location.href='index.php'</script>";
+}
 
+if(isset($_POST['tampilkan'])){
+    $p_awal = $_POST['p_awal'];
+    $p_akhir = $_POST['p_akhir'];
+
+    $link = "export-laporan.php?cari=true&p_awal=$p_awal&p_akhir=$p_akhir";
+    $buku_tamu = query("SELECT * FROM `buku tamu` WHERE tanggal BETWEEN  '$p_awal' AND '$p_akhir' ");
+
+}else{
+    $buku_tamu = query("SELECT * FROM `buku tamu` ORDER BY tanggal DESC");
+}
+?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -55,7 +71,16 @@ require_once('function.php');
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <span class="text">Tabel Histori Tamu</span>
+            <div class="card-header py-3">
+                <a href="<?= isset($_POST['tampilkan']) ? $link : 'export-laporan.php' ; ?>" target="_blank" class="btn
+                btn-success btn-icons-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-file-excel"></i>
+                    </span>
+                    <span class="text">Export Laporan</span>
+                </a>
+            </div>
+            <!-- <span class="text">Tabel Histori Tamu</span> -->
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -74,13 +99,8 @@ require_once('function.php');
                     </thead>
                     <tbody>
                         <?php
-                        if (isset($_POST['tampilkan'])) {
-                            $p_awal = $_POST['p_awal'];
-                            $p_akhir = $_POST['p_akhir'];
-                            // penomoran auto-increment
                             $no = 1;
-                            // Query untuk memanggil semua data dari tabel buku_tamu
-                            $buku_tamu = query("SELECT * FROM `buku tamu` WHERE tanggal BETWEEN '$p_awal' AND '$p_akhir'");
+                            
                             foreach ($buku_tamu as $tamu) : ?>
 
                                 <tr>
@@ -95,12 +115,9 @@ require_once('function.php');
                                         <a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu'] ?>">Ubah</a>
                                         <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger" href="hapus-tamu.php?id=<?= $tamu['id_tamu'] ?>">Hapus</a>
                                     </td>
-                                </tr>`
+                                </tr>
 
-       `                     <?php endforeach; ?>
-                        <?php 
-                        } 
-                        ?>
+                            <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

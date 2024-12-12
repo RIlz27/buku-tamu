@@ -1,0 +1,16 @@
+{
+    "name": "egi/buku_tamu",
+    "autoload": {
+        "psr-4": {
+            "Egi\\BukuTamu\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "egi"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^2.1"
+    }
+}

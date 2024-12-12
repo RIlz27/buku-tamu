@@ -1,19 +1,30 @@
 <?php
-require 'koneksi.php';
-if(isset($_POST['login'])) {
+//memulai session
+session_start();
+require_once('koneksi.php');
+
+if(isset($_SESSION['login'])){
+    header('Location: index.php');
+    // var_dump($_SESSION['login']);
+}
+
+if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     $result = mysqli_query($koneksi, "SELECT * FROM `users` WHERE username = '$username'");
 
     // cek apakah ada username
-    if(mysqli_num_rows($result) === 1) {
+    if (mysqli_num_rows($result) === 1) {
 
         // cek apakah passwordnya benar
         $row = mysqli_fetch_assoc($result);
 
-        if(password_verify($password, $row['password'])) {
-
+        if (password_verify($password, $row['password'])) {
+            //set session
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $row['user_role'];
             // Login berhasil
             header("Location: index.php");
             exit;
@@ -22,6 +33,7 @@ if(isset($_POST['login'])) {
 
     $error = true;
 }
+
 ?>
 
 
@@ -55,14 +67,14 @@ if(isset($_POST['login'])) {
     <div class="container">
 
         <?php
-        if(isset($error)) : ?>
+        if (isset($error)) : ?>
             <div class="alert alert-danger mt-3" role="alert">
                 Username atau password salah!
             </div>
         <?php
         endif;
         ?>
-        
+
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -74,7 +86,7 @@ if(isset($_POST['login'])) {
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                                <img src="assets/img/login-page.png" alt="">
+                                <img class="img-fluid mx-auto w-100 p-1 h-100" src="assets/img/undraw_posting_photo.svg" alt="">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
