@@ -78,7 +78,7 @@ if (isset($_POST['simpan'])) {
                             <td><?= $tamu['no_hp']?></td>
                             <td><?= $tamu['bertemu']?></td>
                             <td><?= $tamu['kepentingan']?></td>
-                            <td><button class="btn btn-success" type="button">Ubah</button>
+                            <td><a class="btn btn-success" href="edit-tamu.php?id=<?= $tamu['id_tamu']?>">Ubah</a>
                                 <button class="btn btn-danger" type="button">Hapus</button></td>
                         </tr>
                         <?php endforeach;?>
@@ -108,7 +108,7 @@ if (isset($_POST['simpan'])) {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="tambahModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="tambahModalLabel">Ubah data tamu</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
