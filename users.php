@@ -11,7 +11,7 @@ include_once('templates/header.php');
 
 <?php
 if (isset($_POST['simpan'])) {
-  if (tambah_tamu($_POST) > 0) {
+  if (tambah_user($_POST) > 0) {
 ?>
     <div class="alert alert-success" role="alert">
       Data berhasil disimpan!
@@ -58,8 +58,8 @@ if (isset($_POST['simpan'])) {
                             <td><?= $no++; ?></td>
                             <td><?= $user['username']?></td>
                             <td><?= $user['user_role']?></td>
-                            <td><a class="btn btn-success" href="edit-tamu.php?id=<?= $user['id_users']?>">Ubah</a>
-                                <a onclick="confirm('Apakah anda yakin ingin menghapus data tamu?')" class="btn btn-danger"  href="hapus-tamu.php?id=<?= $user['id_users']?>">Hapus</a>
+                            <td><a class="btn btn-success" href="edit-users.php?id=<?= $user['id_users']?>">Ubah</a>
+                                <a onclick="confirm('Apakah anda yakin ingin menghapus data user?')" class="btn btn-danger"  href="hapus-user.php?id=<?= $user['id_users']?>">Hapus</a>
                         </tr>
                         <?php endforeach;?>
                 </tbody>
@@ -69,16 +69,17 @@ if (isset($_POST['simpan'])) {
 </div>
 
 <?php
-  $query = mysqli_query($koneksi, "SELECT max(id_tamu) as kodeTerbesar FROM `buku tamu`");
+  $query = mysqli_query($koneksi, "SELECT max(id_users) as kodeTerbesar FROM `users`");
+//   var_dump($query);
   $data = mysqli_fetch_array($query);
-  $kodeTamu = $data["kodeTerbesar"];
+  $kodeuser = $data["kodeTerbesar"];
 
-  $urutan = (int) substr($kodeTamu, 2, 3);
+  $urutan = (int) substr($kodeuser, 2, 3);
 
   $urutan++;
 
-  $huruf = "zt";
-  $kodeTamu = $huruf . sprintf("%03s", $urutan);
+  $huruf = "usr";
+  $kodeuser = $huruf . sprintf("%02s", $urutan);
 
 ?>
 
@@ -88,42 +89,33 @@ if (isset($_POST['simpan'])) {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="tambahModalLabel">Ubah data tamu</h5>
+        <h5 class="modal-title" id="tambahModalLabel">Tambah data user</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form method="post" action="">
-          <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $kodeTamu ?>">
+          <input type="text" name="id_user" id="id_user" value="<?= $kodeuser ?>">
           <div class="form-group row">
-            <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
+            <label for="username" class="col-sm-3 col-form-label">Username</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="nama_tamu" name="nama_tamu">
+              <input type="text" class="form-control" id="username" name="username">
             </div>
           </div>
           <div class="form-group row">
-            <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+            <label for="password" class="col-sm-3 col-form-label">Password</label>
             <div class="col-sm-8">
-              <textarea class="form-control" id="alamat" name="alamat"></textarea>
+              <input type="password" class="form-control" id="password" name="password">
             </div>
           </div>
           <div class="form-group row">
-            <label for="no_hp" class="col-sm-3 col-form-label">No. Telepon</label>
+            <label for="user_role" class="col-sm-3 col-form-label">User Role</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="no_hp" name="no_hp">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="bertemu" class="col-sm-3 col-form-label">Bertemu dg.</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="bertemu" name="bertemu">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="kepentingan" class="col-sm-3 col-form-label">Kepentingan</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="kepentingan" name="kepentingan">
+              <select class="form-control" name="user_role" id="user_role">
+                <option value="admin">Administrator</option>
+                <option value="operator">Operator</option>
+              </select>
             </div>
           </div>
           <div class="modal-footer">
