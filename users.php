@@ -59,7 +59,7 @@ if (isset($_POST['simpan'])) {
                             <td><?= $user['username']?></td>
                             <td><?= $user['user_role']?></td>
                             <td><a class="btn btn-success" href="edit-users.php?id=<?= $user['id_users']?>">Ubah</a>
-                                <a onclick="confirm('Apakah anda yakin ingin menghapus data user?')" class="btn btn-danger"  href="hapus-user.php?id=<?= $user['id_users']?>">Hapus</a>
+                                <a onclick="confirm('Apakah anda yakin ingin menghapus data user?')" class="btn btn-danger"  href="hapus-users.php?id=<?= $user['id_users']?>">Hapus</a>
                         </tr>
                         <?php endforeach;?>
                 </tbody>

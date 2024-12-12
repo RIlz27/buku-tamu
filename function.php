@@ -95,6 +95,12 @@ function ubah_user($data)
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }
+function hapus_user($id) {
+    global $koneksi;
+    $query = "DELETE FROM `users` WHERE id_users = '$id'";
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+}
 
 
 ?>
