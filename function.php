@@ -16,6 +16,7 @@ function query($query) {
 function tambah_tamu($data)
 {
     global $koneksi;
+    
     $kode = htmlspecialchars($data["id_tamu"]);
     $tanggal = date("Y-m-d");
     $nama_tamu = htmlspecialchars($data["nama_tamu"]);

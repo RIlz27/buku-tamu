@@ -1,16 +1,17 @@
 {
-    "name": "egi/buku_tamu",
+    "name": "hp/app-bukutamu",
+    "description": "composer",
     "autoload": {
         "psr-4": {
-            "Egi\\BukuTamu\\": "src/"
+            "Hp\\AppBukutamu\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "egi"
+            "name": "skip"
         }
     ],
     "require": {
-        "phpoffice/phpspreadsheet": "^2.1"
+        "phpoffice/phpspreadsheet": "^1.29"
     }
 }

@@ -76,6 +76,7 @@ if (isset($_POST['simpan'])) {
                         $no = 1;
                         $buku_tamu = query("SELECT * FROM `buku tamu`");
                         foreach($buku_tamu as $tamu) : ?>
+                        
                         <tr>
                             <td><?= $no++; ?></td>
                             <td><?= $tamu['tanggal']?></td>
