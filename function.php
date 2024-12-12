@@ -150,7 +150,7 @@ function uploadgambar()
     $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
     $ekstensiGambar = explode('.', $namaFile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
-    if (!in_array(needle: $ekstensiGambar, haystack: $ekstensiGambarValid)) {
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
         echo "<script>alert('file yang diunggah harus gambar!')</script>";
         return false;
     }

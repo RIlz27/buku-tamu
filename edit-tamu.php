@@ -43,7 +43,7 @@ include_once('templates/header.php');
             <h6>Data tamu</h6>
         </div>
         <div class="card-body">
-            <form method="post" action="">
+            <form method="post" action="" enctype="multipart/form-data">
                 <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $id_tamu ?>">
                 <div class="form-group row">
                     <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
@@ -73,6 +73,13 @@ include_once('templates/header.php');
                     <label for="kepentingan" class="col-sm-3 col-form-label">Kepentingan</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="kepentingan" name="kepentingan" value="<?= $data['kepentingan'] ?>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="gambar" class="col-sm-3 col-form-label">Gambar</label>
+                    <div class="col-sm-8">
+                        <img src="assets/upload_gambar/<?= $data['gambar'] ?>" alt="">
+                        <input type="file" class="form-control" id="gambar" name="gambar" value="<?= $data['gambar'] ?>">
                     </div>
                 </div>
                 <div class="form-group row">

@@ -18,7 +18,7 @@ if(!isset($_SESSION['login'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Blan</title>
+    <title>Buku Tamu - Blan</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,14 +39,14 @@ if(!isset($_SESSION['login'])) {
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="background-image: linear-gradient(180deg, #18181c 10%, #6c6e7e 100%) !important;" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon">
                 <i class="fas fa-school" ></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Zie BukuTamu</div>
+                <div class="sidebar-brand-text mx-3">Rilzy BukuTamu</div>
             </a>
 
             <!-- Divider -->
